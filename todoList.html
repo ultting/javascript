@@ -16,9 +16,7 @@
             <form class="todoForm">
                 <div>
                     <input type = "text" class = "item" autofocus="true">
-                </div>
-                <div>
-                    <button type="button" class="input__button" ><i class="fas fa-plus-circle">입력</i></button>
+                    <button type="button" class="input__button"><i class="fas fa-plus-circle">입력</i></button>
                     <!-- 버튼에 타입을 입히니 리스트가 생성이 되었음 ?? 도대체 ?? -->
                 </div>
             </form>
@@ -32,6 +30,8 @@
 <script defer> // defer 는 document가 parse된 이후에 스크립트가 실행되어야한다고알려주는 역할이다.
     // const 와 let 의 차이를 알아보기
     // 자바스크립트를 공부하면서 모르는것이 있으면 keyword mdn 으로 검색하자 ex) local storage mdn
+    // 호이스팅 :: 없는데 끌어당긴다 
+    let toDoClick = document.querySelector(".input__button")
     let toDoForm = document.querySelector(".todoForm")
     let toDoInput = toDoForm.querySelector("input")
     let toDos = document.querySelector(".toDos")
@@ -128,15 +128,22 @@
 
     }
 
-    function savetoDoList(){
+    function savetoDoList(){ // 씨발롬
         localStorage.setItem(TODOLIST, JSON.stringify(toDoList))
     }
 
     function init(){
         loadtoDoList()
         toDoForm.addEventListener("submit", createToDo)
+        toDoClick.addEventListener("click", createToDo)
     }
     init()
+    
+    // const 에 숫자나 문자를 넣고 update를 시도할시 에러가뜸
+    // let 은 지역변수개념
+    // var global 변수, 호이스팅 기능
+    // const 변하지 않을거 같은 변수를 입력
+    // 해시테이블 , 정렬방식
     
 </script>
 </html>
